@@ -1,7 +1,7 @@
 // اطلاعات اولیه بیوگرافی محمد مهدی ارجمند منش
 const defaultBio = {
   fullName: 'محمد مهدی ارجمند منش',
-  email: 'JACKLONY2010@GMAIL.COM',
+  email: 'jacklony2010@gmail.com',
   phone: '09052237518',
   subtitle: 'توسعه‌دهنده فول‌استک | برنامه‌نویس اندروید و ویندوز | متخصص وردپرس و سئو',
   bioText: 'طراح و توسعه‌دهنده سیستم‌های اختصاصی تحت وب، اپلیکیشن‌های کاربردی اندروید و ویندوز، افزونه‌ها و قالب‌های اختصاصی وردپرس، بهینه‌سازی کامل سئو (SEO)، پنل‌های مدیریت ابری شبکه و ربات‌های هوشمند تلگرام.'
@@ -13,7 +13,7 @@ const defaultProjects = [
     id: 'proj_1',
     title: 'Dizyno VPN (Cloudflare Workers Edition)',
     category: 'vpn',
-    url: 'https://github.com/Hsdhugdw/claudeflare-dizynopanel',
+    url: 'https://github.com/MohammadMehdiArjmandManesh1386/claudeflare-dizynopanel',
     imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80',
     tags: ['Cloudflare Workers', 'JavaScript', 'WebSocket', 'Telegram Bot API'],
     desc: 'پنل مدیریت کامل سرویس‌های VLESS و Trojan بر پایه کلودفلر ورکر همراه با سوکت اختصاصی، اشتراک چندگانه و ربات مدیریت تعاملی تلگرام.'
@@ -22,7 +22,7 @@ const defaultProjects = [
     id: 'proj_2',
     title: 'Dizyno VPN (Railway & Sing-box Engine)',
     category: 'vpn',
-    url: 'https://github.com/Hsdhugdw/railway-dizynopanel',
+    url: 'https://github.com/MohammadMehdiArjmandManesh1386/railway-dizynopanel',
     imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
     tags: ['Node.js', 'Sing-box Core', 'Express.js', 'Bootstrap 5'],
     desc: 'پنل سرور اختصاصی ریلوی با هسته قدرت‌مند Sing-box، دشبورد مدرن تیره، مدیریت سقف ترافیک و تاریخ انقضای کاربران.'
@@ -31,7 +31,7 @@ const defaultProjects = [
     id: 'proj_3',
     title: 'افزونه اختصاصی سئو و مدیریت وردپرس',
     category: 'wordpress',
-    url: 'https://github.com/Hsdhugdw',
+    url: 'https://github.com/MohammadMehdiArjmandManesh1386',
     imageUrl: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80',
     tags: ['WordPress Plugin', 'PHP 8+', 'SEO Optimization', 'MySQL'],
     desc: 'توسعه افزونه اختصاصی برای وردپرس جهت آنالیز خودکار سئو، تولید متاتگ‌های هوشمند و افزایش سرعت لود صفحات.'
@@ -40,7 +40,7 @@ const defaultProjects = [
     id: 'proj_4',
     title: 'اپلیکیشن کاربردی موبایل (Android App)',
     category: 'android',
-    url: 'https://github.com/Hsdhugdw',
+    url: 'https://github.com/MohammadMehdiArjmandManesh1386',
     imageUrl: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80',
     tags: ['Android', 'Java', 'Kotlin', 'Material Design'],
     desc: 'طراحی و کدنویسی اپلیکیشن نیتیو اندروید با رابط کاربری مدرن، مدیریت حافظه آفلاین و همگام‌سازی ابری سرور.'
@@ -49,7 +49,7 @@ const defaultProjects = [
     id: 'proj_5',
     title: 'نرم‌افزار مدیریت دسکتاپ (Windows Desktop)',
     category: 'windows',
-    url: 'https://github.com/Hsdhugdw',
+    url: 'https://github.com/MohammadMehdiArjmandManesh1386',
     imageUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80',
     tags: ['Windows App', 'C#', '.NET', 'SQLite'],
     desc: 'برنامه‌نویسی نرم‌افزار دسکتاپ ویندوز برای مدیریت حسابداری، گزارش‌گیری گرافیکی و خروجی اکسل.'
@@ -58,6 +58,106 @@ const defaultProjects = [
 
 let currentFilter = 'all';
 
+// ---- سیستم احراز هویت ادمین ----
+function getAdminPassword() {
+  return localStorage.getItem('dizyno_portfolio_pass') || 'admin';
+}
+
+function isAdminLoggedIn() {
+  return localStorage.getItem('dizyno_admin_session') === 'true';
+}
+
+function handleAdminLogin(e) {
+  e.preventDefault();
+  const pass = document.getElementById('adminPasswordInput').value;
+  if (pass === getAdminPassword()) {
+    localStorage.setItem('dizyno_admin_session', 'true');
+    const modalEl = document.getElementById('loginModal');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    if (modal) modal.hide();
+
+    updateAdminUI();
+    renderProjects();
+    alert('✅ ورود با موفقیت انجام شد. حالت مدیریت فعال گردید.');
+  } else {
+    alert('❌ کلمه عبور اشتباه است.');
+  }
+}
+
+function logoutAdmin() {
+  localStorage.removeItem('dizyno_admin_session');
+  updateAdminUI();
+  renderProjects();
+  alert('از حالت مدیریت خارج شدید.');
+}
+
+function handleChangePassword(e) {
+  e.preventDefault();
+  const curr = document.getElementById('currPassInput').value;
+  const newP = document.getElementById('newPassInput').value;
+
+  if (curr !== getAdminPassword()) {
+    alert('❌ رمز عبور فعلی نادرست است.');
+    return;
+  }
+
+  localStorage.setItem('dizyno_portfolio_pass', newP);
+  alert('✅ کلمه عبور مدیریت با موفقیت تغییر یافت.');
+  document.getElementById('currPassInput').value = '';
+  document.getElementById('newPassInput').value = '';
+}
+
+function updateAdminUI() {
+  const isAd = isAdminLoggedIn();
+  if (isAd) {
+    document.body.classList.add('admin-mode');
+    document.getElementById('adminTopBar').classList.remove('d-none');
+    document.getElementById('adminAddProjBtn').classList.remove('d-none');
+    renderAdminProjectsTable();
+  } else {
+    document.body.classList.remove('admin-mode');
+    document.getElementById('adminTopBar').classList.add('d-none');
+    document.getElementById('adminAddProjBtn').classList.add('d-none');
+  }
+}
+
+// چک کردن روت مخفی ورود مدیریت (#admin یا #wp-admin یا ?admin=true)
+function checkSecretAdminRoute() {
+  const hash = window.location.hash;
+  const search = window.location.search;
+
+  if (hash === '#admin' || hash === '#wp-admin' || search.includes('admin=true')) {
+    if (!isAdminLoggedIn()) {
+      const modalEl = document.getElementById('loginModal');
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+    } else {
+      const modalEl = document.getElementById('adminDashboardModal');
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+    }
+  }
+}
+
+// میانبر کیبورد مخفی Ctrl + Shift + A
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+    e.preventDefault();
+    if (!isAdminLoggedIn()) {
+      const modalEl = document.getElementById('loginModal');
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+    } else {
+      const modalEl = document.getElementById('adminDashboardModal');
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+    }
+  }
+});
+
+window.addEventListener('hashchange', checkSecretAdminRoute);
+
+// ---- مدیریت اطلاعات و بیوگرافی ----
 function getBioInfo() {
   const saved = localStorage.getItem('dizyno_portfolio_bio');
   if (saved) {
@@ -81,7 +181,6 @@ function loadBioInfo() {
   document.getElementById('heroPhoneText').innerText = bio.phone;
   document.getElementById('heroPhoneBtn').href = 'tel:' + bio.phone;
 
-  // پر کردن فرم ویرایش بیوگرافی
   document.getElementById('editFullName').value = bio.fullName;
   document.getElementById('editEmail').value = bio.email;
   document.getElementById('editPhone').value = bio.phone;
@@ -102,11 +201,10 @@ function saveBioInfo(e) {
   saveBioInfoToStorage(bio);
   loadBioInfo();
 
-  const modalEl = document.getElementById('editBioModal');
-  const modal = bootstrap.Modal.getInstance(modalEl);
-  if (modal) modal.hide();
+  alert('✅ مشخصات بیوگرافی با موفقیت بروزرسانی شد.');
 }
 
+// ---- مدیریت نمونه کارها (CRUD) ----
 function getProjects() {
   const saved = localStorage.getItem('dizyno_portfolio_projects');
   if (saved) {
@@ -122,6 +220,7 @@ function saveProjectsToStorage(projects) {
 function renderProjects() {
   const grid = document.getElementById('portfolioGrid');
   const projects = getProjects();
+  const isAd = isAdminLoggedIn();
   
   const filtered = currentFilter === 'all' 
     ? projects 
@@ -134,7 +233,6 @@ function renderProjects() {
       <div class="col-12 text-center py-5">
         <i class="fa-solid fa-folder-open display-4 text-slate-400 mb-3 d-block opacity-50"></i>
         <h5 class="text-white">هیچ نمونه‌کاری در این دسته‌بندی یافت نشد.</h5>
-        <p class="text-slate-400 small">برای افزودن پروژه جدید روی دکمه "افزودن نمونه‌کار جدید" کلیک کنید.</p>
       </div>
     `;
     return;
@@ -153,6 +251,17 @@ function renderProjects() {
 
     const tagsHtml = (p.tags || []).map(t => `<span class="tech-tag">${t}</span>`).join(' ');
 
+    const adminButtons = isAd ? `
+      <div class="d-flex align-items-center gap-1">
+        <button onclick="openEditProjectModal('${p.id}')" class="btn btn-sm btn-outline-warning rounded-circle" title="ویرایش">
+          <i class="fa-solid fa-pen"></i>
+        </button>
+        <button onclick="deleteProject('${p.id}')" class="btn btn-sm btn-outline-danger rounded-circle" title="حذف">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+    ` : '';
+
     const cardHtml = `
       <div class="col-12 col-md-6 col-lg-4">
         <div class="portfolio-card">
@@ -170,9 +279,7 @@ function renderProjects() {
               <a href="${p.url}" target="_blank" class="btn btn-sm btn-info text-white rounded-pill px-3 fw-bold">
                 <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> مشاهده / دانلود
               </a>
-              <button onclick="deleteProject('${p.id}')" class="btn btn-sm btn-outline-danger border-0 rounded-circle" title="حذف">
-                <i class="fa-solid fa-trash"></i>
-              </button>
+              ${adminButtons}
             </div>
           </div>
         </div>
@@ -189,8 +296,39 @@ function filterProjects(cat, btn) {
   renderProjects();
 }
 
+function openAddProjectModal() {
+  document.getElementById('editingProjectId').value = '';
+  document.getElementById('editorModalTitle').innerHTML = '<i class="fa-solid fa-folder-plus text-info me-2"></i> افزودن نمونه‌کار جدید';
+  document.getElementById('projectForm').reset();
+  
+  const modalEl = document.getElementById('projectEditorModal');
+  const modal = new bootstrap.Modal(modalEl);
+  modal.show();
+}
+
+function openEditProjectModal(id) {
+  const projects = getProjects();
+  const proj = projects.find(p => p.id === id);
+  if (!proj) return;
+
+  document.getElementById('editingProjectId').value = proj.id;
+  document.getElementById('editorModalTitle').innerHTML = '<i class="fa-solid fa-pen-to-square text-warning me-2"></i> ویرایش نمونه‌کار';
+  
+  document.getElementById('projectTitle').value = proj.title;
+  document.getElementById('projectCategory').value = proj.category;
+  document.getElementById('projectUrl').value = proj.url;
+  document.getElementById('projectImageUrl').value = proj.imageUrl;
+  document.getElementById('projectTags').value = (proj.tags || []).join(', ');
+  document.getElementById('projectDesc').value = proj.desc;
+
+  const modalEl = document.getElementById('projectEditorModal');
+  const modal = new bootstrap.Modal(modalEl);
+  modal.show();
+}
+
 function saveProject(e) {
   e.preventDefault();
+  const id = document.getElementById('editingProjectId').value;
   const title = document.getElementById('projectTitle').value.trim();
   const category = document.getElementById('projectCategory').value;
   const url = document.getElementById('projectUrl').value.trim();
@@ -200,23 +338,31 @@ function saveProject(e) {
 
   const tags = tagsStr.split(',').map(t => t.trim()).filter(Boolean);
 
-  const projects = getProjects();
-  const newProj = {
-    id: 'proj_' + Date.now(),
-    title,
-    category,
-    url,
-    imageUrl,
-    tags,
-    desc
-  };
+  let projects = getProjects();
 
-  projects.unshift(newProj);
+  if (id) {
+    const index = projects.findIndex(p => p.id === id);
+    if (index !== -1) {
+      projects[index] = { id, title, category, url, imageUrl, tags, desc };
+    }
+  } else {
+    const newProj = {
+      id: 'proj_' + Date.now(),
+      title,
+      category,
+      url,
+      imageUrl,
+      tags,
+      desc
+    };
+    projects.unshift(newProj);
+  }
+
   saveProjectsToStorage(projects);
   renderProjects();
+  renderAdminProjectsTable();
 
-  document.getElementById('projectForm').reset();
-  const modalEl = document.getElementById('addProjectModal');
+  const modalEl = document.getElementById('projectEditorModal');
   const modal = bootstrap.Modal.getInstance(modalEl);
   if (modal) modal.hide();
 }
@@ -227,9 +373,51 @@ function deleteProject(id) {
   projects = projects.filter(p => p.id !== id);
   saveProjectsToStorage(projects);
   renderProjects();
+  renderAdminProjectsTable();
+}
+
+function renderAdminProjectsTable() {
+  const tbody = document.getElementById('adminProjectsTableBody');
+  if (!tbody) return;
+
+  const projects = getProjects();
+  document.getElementById('adminProjCount').innerText = projects.length;
+
+  tbody.innerHTML = '';
+  projects.forEach(p => {
+    const categoryLabels = { 
+      vpn: 'پنل شبکه و کلود', 
+      web: 'سیستم وب', 
+      android: 'اپلیکیشن اندروید',
+      windows: 'نرم‌افزار ویندوز',
+      wordpress: 'وردپرس و افزونه',
+      bot: 'ربات تلگرام' 
+    };
+
+    tbody.innerHTML += `
+      <tr>
+        <td>
+          <img src="${p.imageUrl}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 10px;">
+        </td>
+        <td class="fw-bold text-white">${p.title}</td>
+        <td><span class="badge bg-secondary">${categoryLabels[p.category] || p.category}</span></td>
+        <td><small class="text-slate-400">${(p.tags || []).join(', ')}</small></td>
+        <td>
+          <button onclick="openEditProjectModal('${p.id}')" class="btn btn-sm btn-outline-warning me-1">
+            <i class="fa-solid fa-pen"></i> ویرایش
+          </button>
+          <button onclick="deleteProject('${p.id}')" class="btn btn-sm btn-outline-danger">
+            <i class="fa-solid fa-trash"></i> حذف
+          </button>
+        </td>
+      </tr>
+    `;
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   loadBioInfo();
+  updateAdminUI();
   renderProjects();
+  checkSecretAdminRoute();
 });
