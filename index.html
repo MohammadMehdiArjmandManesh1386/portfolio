@@ -12,7 +12,7 @@
   <!-- Vazirmatn Font -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
   
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=1.1">
 </head>
 <body>
 
@@ -170,6 +170,11 @@
                 <i class="fa-solid fa-key me-1"></i> تغییر رمز مدیریت
               </button>
             </li>
+            <li class="nav-item">
+              <button class="nav-link rounded-pill fw-bold text-info" data-bs-toggle="tab" data-bs-target="#tabExport">
+                <i class="fa-solid fa-cloud-arrow-down me-1"></i> خروجی برای گیت‌هاب (ذخیره همگانی)
+              </button>
+            </li>
           </ul>
 
           <div class="tab-content">
@@ -245,6 +250,24 @@
                 <button type="submit" class="btn btn-danger px-4 fw-bold">تغییر کلمه عبور مدیریت</button>
               </form>
             </div>
+
+            <!-- تب ۴: همگام‌سازی و خروجی کد گیت‌هاب -->
+            <div class="tab-pane fade" id="tabExport">
+              <div class="p-3 mb-3 rounded-4" style="background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.2);">
+                <h6 class="fw-bold text-info mb-2"><i class="fa-solid fa-cloud-arrow-down me-2"></i> ذخیره همگانی تغییرات برای تمام گوشی‌ها و کاربران اینترنت</h6>
+                <p class="text-slate-300 small mb-3">وقتی کامپیوتر نمونه‌کاری اضافه یا ویرایش می‌کنید، در مرورگر سیستم شما ذخیره می‌شود. برای اینکه در <b>تمام گوشی‌ها و مرورگرهای مشتریان</b> هم تغییرات ظاهر شود، کافیست روی دکمه زیر کلیک کرده و کد تولیدشده را کپی و در فایل <code>app.js</code> گیت‌هاب جایگزین کنید.</p>
+                <button type="button" class="btn btn-info text-white fw-bold px-4 rounded-pill" onclick="generateExportedJsCode()">
+                  ⚡ تولید کد همگانی app.js برای گیت‌هاب
+                </button>
+              </div>
+              <div id="exportCodeContainer" class="d-none">
+                <label class="form-label text-white fw-bold">کد جدید فایل app.js (کپی کرده و در گیت‌هاب قرار دهید):</label>
+                <textarea id="exportedJsTextarea" class="form-control form-dark font-monospace small" rows="10" readonly></textarea>
+                <button type="button" class="btn btn-sm btn-outline-warning mt-2 fw-bold" onclick="copyExportedJsCode()">
+                  📋 کپی کد به حافظه (Clipboard)
+                </button>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -307,6 +330,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=1.1"></script>
 </body>
 </html>
