@@ -1,0 +1,203 @@
+:root {
+  --bg-main: #090d16;
+  --bg-card: #0f172a;
+  --bg-card-hover: #1e293b;
+  --accent-cyan: #38bdf8;
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --text-main: #f8fafc;
+  --text-slate-300: #cbd5e1;
+  --text-slate-400: #94a3b8;
+  --border-card: rgba(255, 255, 255, 0.08);
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Vazirmatn', sans-serif;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.backdrop-blur {
+  background: rgba(9, 13, 22, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-card);
+}
+
+.brand-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-github {
+  background: #1f2937;
+  color: #fff;
+  border: 1px solid #374151;
+}
+.btn-github:hover {
+  background: #374151;
+  color: #fff;
+}
+
+.hero-section {
+  position: relative;
+  padding: 80px 0 60px;
+  overflow: hidden;
+}
+
+.hero-bg-glow {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--accent-cyan);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #22c55e;
+}
+
+.skill-badge {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-card);
+  color: var(--text-slate-300);
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.filter-btn-group .btn-filter {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-card);
+  color: var(--text-slate-400);
+  padding: 6px 16px;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  margin: 0 3px;
+  transition: all 0.2s ease;
+}
+.filter-btn-group .btn-filter.active,
+.filter-btn-group .btn-filter:hover {
+  background: var(--accent-cyan);
+  color: #090d16;
+  font-weight: 600;
+}
+
+.portfolio-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(56, 189, 248, 0.15);
+}
+
+.portfolio-img-wrapper {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #000;
+}
+.portfolio-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.portfolio-card:hover .portfolio-img {
+  transform: scale(1.05);
+}
+
+.portfolio-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(9, 13, 22, 0.8);
+  backdrop-filter: blur(8px);
+  color: var(--accent-cyan);
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.portfolio-body {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tech-tag {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-slate-400);
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-card);
+  color: var(--text-main);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.contact-pill:hover {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: var(--accent-cyan);
+  transform: translateY(-2px);
+}
+
+.form-dark {
+  background: #1e293b !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+}
+.form-dark:focus {
+  border-color: var(--accent-cyan) !important;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.2) !important;
+}

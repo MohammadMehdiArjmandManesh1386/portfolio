@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پورتفولیو و ویترین نمونه‌کارهای محمد مهدی ارجمند منش</title>
+  
+  <!-- Bootstrap 5 RTL -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Vazirmatn Font -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- نوار بالای صفحه -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top backdrop-blur">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="#">
+        <div class="brand-avatar">
+          <i class="fa-solid fa-code text-info"></i>
+        </div>
+        <span class="text-white" id="navBrandName">محمد مهدی ارجمند منش</span>
+      </a>
+      
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-outline-warning rounded-pill px-3 btn-sm" data-bs-toggle="modal" data-bs-target="#editBioModal">
+          <i class="fa-solid fa-user-gear me-1"></i> ویرایش اطلاعات و تماس
+        </button>
+        <button class="btn btn-info text-white rounded-pill px-3 btn-sm fw-bold" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+          <i class="fa-solid fa-plus me-1"></i> افزودن نمونه‌کار جدید
+        </button>
+        <a href="https://github.com/Hsdhugdw" target="_blank" class="btn btn-github rounded-pill px-3 btn-sm">
+          <i class="fa-brands fa-github me-1"></i> گیت‌هاب
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- هیرو و بیوگرافی -->
+  <section class="hero-section text-center">
+    <div class="hero-bg-glow"></div>
+    <div class="container">
+      <div class="badge-pill mb-3">
+        <span class="pulse-dot"></span> آماده دریافت پروژه‌های وب، اندروید، ویندوز، وردپرس و سئو
+      </div>
+      <h1 class="display-4 fw-bold text-white mb-2" id="heroFullName">محمد مهدی ارجمند منش</h1>
+      <p class="lead text-info fw-bold mb-3" id="heroSubtitle">توسعه‌دهنده فول‌استک | برنامه‌نویس اندروید و ویندوز | متخصص وردپرس و سئو</p>
+      
+      <p class="text-slate-300 mx-auto mb-4" style="max-width: 760px;" id="heroBioDesc">
+        طراح و توسعه‌دهنده سیستم‌های اختصاصی تحت وب، اپلیکیشن‌های کاربردی اندروید و ویندوز، افزونه‌ها و قالب‌های اختصاصی وردپرس، بهینه‌سازی کامل سئو (SEO)، پنل‌های مدیریت ابری شبکه و ربات‌های هوشمند تلگرام.
+      </p>
+
+      <!-- اطلاعات تماس مستقیم -->
+      <div class="d-flex flex-wrap align-items-center justify-content-center gap-3 mb-4">
+        <a id="heroEmailBtn" href="mailto:JACKLONY2010@GMAIL.COM" class="contact-pill">
+          <i class="fa-solid fa-envelope text-danger"></i> <span id="heroEmailText">JACKLONY2010@GMAIL.COM</span>
+        </a>
+        <a id="heroPhoneBtn" href="tel:09052237518" class="contact-pill">
+          <i class="fa-solid fa-phone text-success"></i> <span id="heroPhoneText">09052237518</span>
+        </a>
+      </div>
+
+      <!-- کارت‌های مهارت برتر -->
+      <div class="d-flex flex-wrap justify-content-center gap-2">
+        <span class="skill-badge"><i class="fa-brands fa-js text-warning me-1"></i> وب و سیستم‌های اختصاصی</span>
+        <span class="skill-badge"><i class="fa-brands fa-android text-success me-1"></i> اپلیکیشن‌های اندروید</span>
+        <span class="skill-badge"><i class="fa-brands fa-windows text-primary me-1"></i> برنامه‌های ویندوز</span>
+        <span class="skill-badge"><i class="fa-brands fa-wordpress text-info me-1"></i> افزونه و قالب وردپرس</span>
+        <span class="skill-badge"><i class="fa-solid fa-chart-line text-warning me-1"></i> بهینه‌سازی سئو (SEO)</span>
+        <span class="skill-badge"><i class="fa-solid fa-cloud text-cyan me-1"></i> Cloudflare & Sing-box</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- فیلتر و گالری نمونه کارها -->
+  <section class="container py-4">
+    <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-3">
+      <div>
+        <h3 class="fw-bold text-white mb-1"><i class="fa-solid fa-layer-group text-info me-2"></i> ویترین کامل نمونه‌کارها</h3>
+        <p class="text-slate-400 small mb-0">پروژه‌های پیاده‌سازی شده بر اساس دسته‌بندی</p>
+      </div>
+
+      <!-- فیلتر دسته‌بندی کامل -->
+      <div class="btn-group filter-btn-group flex-wrap" role="group">
+        <button type="button" class="btn btn-filter active mb-1" onclick="filterProjects('all', this)">همه پروژه‌ها</button>
+        <button type="button" class="btn btn-filter mb-1" onclick="filterProjects('vpn', this)">پنل‌های شبکه و کلود</button>
+        <button type="button" class="btn btn-filter mb-1" onclick="filterProjects('web', this)">سیستم‌های اختصاصی وب</button>
+        <button type="button" class="btn btn-filter mb-1" onclick="filterProjects('android', this)">اپلیکیشن اندروید</button>
+        <button type="button" class="btn btn-filter mb-1" onclick="filterProjects('windows', this)">نرم‌افزار ویندوز</button>
+        <button type="button" class="btn btn-filter mb-1" onclick="filterProjects('wordpress', this)">وردپرس و افزونه</button>
+        <button type="button" class="btn btn-filter mb-1" onclick="filterProjects('bot', this)">ربات تلگرام</button>
+      </div>
+    </div>
+
+    <!-- شبکه‌بندی نمونه‌کارها -->
+    <div class="row g-4" id="portfolioGrid">
+      <!-- کارتها داینامیک از JS بارگذاری می‌شوند -->
+    </div>
+  </section>
+
+  <!-- مودال ثبت / افزودن نمونه کار جدید -->
+  <div class="modal fade" id="addProjectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content modal-dark">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title text-white fw-bold"><i class="fa-solid fa-folder-plus text-info me-2"></i> ثبت نمونه‌کار جدید</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <form id="projectForm" onsubmit="saveProject(event)">
+          <div class="modal-body p-4">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label text-white fw-bold">عنوان پروژه / نرم‌افزار / وب‌سایت</label>
+                <input type="text" id="projectTitle" class="form-control form-dark" placeholder="مثال: اپلیکیشن اندروید مدیریت مالی" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-white fw-bold">دسته‌بندی پروژه</label>
+                <select id="projectCategory" class="form-select form-dark" required>
+                  <option value="vpn">پنل شبکه و کلود</option>
+                  <option value="web">سیستم اختصاصی وب / وب‌سایت</option>
+                  <option value="android">اپلیکیشن اندروید (.APK)</option>
+                  <option value="windows">نرم‌افزار ویندوز (.EXE)</option>
+                  <option value="wordpress">قالب و افزونه وردپرس</option>
+                  <option value="bot">ربات تلگرام / اتوماسیون</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-white fw-bold">لینک آنلاین / دانلود / ریپازیتوری</label>
+                <input type="url" id="projectUrl" class="form-control form-dark" placeholder="https://example.com یا آدرس دانلود فایل" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-white fw-bold">آدرس تصویر / اسکرین‌شات (URL)</label>
+                <input type="url" id="projectImageUrl" class="form-control form-dark" placeholder="https://images.unsplash.com/photo-..." required>
+              </div>
+              <div class="col-12">
+                <label class="form-label text-white fw-bold">تکنولوژی‌های استفاده شده (با کاما جدا کنید)</label>
+                <input type="text" id="projectTags" class="form-control form-dark" placeholder="مثال: Android, Java, Kotlin, PHP, MySQL" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label text-white fw-bold">توضیحات کامل پروژه</label>
+                <textarea id="projectDesc" class="form-control form-dark" rows="3" placeholder="توضیحات جامع پیرامون امکانات، کارکرد و قابلیت‌های پروژه..." required></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-secondary">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">انصراف</button>
+            <button type="submit" class="btn btn-info text-white px-4 fw-bold">ثبت نمونه‌کار در ویترین</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- مودال ویرایش بیوگرافی و اطلاعات تماس -->
+  <div class="modal fade" id="editBioModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-dark">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title text-white fw-bold"><i class="fa-solid fa-user-pen text-warning me-2"></i> ویرایش بیوگرافی و اطلاعات تماس</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <form id="bioForm" onsubmit="saveBioInfo(event)">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label class="form-label text-white fw-bold">نام و نام خانوادگی کامل</label>
+              <input type="text" id="editFullName" class="form-control form-dark" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white fw-bold">آدرس ایمیل</label>
+              <input type="email" id="editEmail" class="form-control form-dark" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white fw-bold">شماره تلفن تماس</label>
+              <input type="text" id="editPhone" class="form-control form-dark" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white fw-bold">عنوان شغلی / زیرنویس اصلی</label>
+              <input type="text" id="editSubtitle" class="form-control form-dark" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white fw-bold">توضیحات بیوگرافی</label>
+              <textarea id="editBioText" class="form-control form-dark" rows="3" required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer border-secondary">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">انصراف</button>
+            <button type="submit" class="btn btn-warning text-dark px-4 fw-bold">ذخیره اطلاعات جدید</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
