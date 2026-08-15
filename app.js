@@ -1,61 +1,65 @@
 // اطلاعات اولیه بیوگرافی محمد مهدی ارجمند منش
 const defaultBio = {
-  fullName: 'محمد مهدی ارجمند منش',
-  email: 'jacklony2010@gmail.com',
-  phone: '09052237518',
-  subtitle: 'توسعه‌دهنده فول‌استک | برنامه‌نویس اندروید و ویندوز | متخصص وردپرس و سئو',
-  bioText: 'طراح و توسعه‌دهنده سیستم‌های اختصاصی تحت وب، اپلیکیشن‌های کاربردی اندروید و ویندوز، افزونه‌ها و قالب‌های اختصاصی وردپرس، بهینه‌سازی کامل سئو (SEO)، پنل‌های مدیریت ابری شبکه و ربات‌های هوشمند تلگرام.'
+  "fullName": "محمد مهدی ارجمند منش",
+  "email": "jacklony2010@gmail.com",
+  "phone": "09052237518",
+  "subtitle": "توسعه‌دهنده فول‌استک | برنامه‌نویس اندروید و ویندوز | متخصص وردپرس و سئو",
+  "bioText": "طراح و توسعه‌دهنده سیستم‌های اختصاصی تحت وب، اپلیکیشن‌های کاربردی اندروید و ویندوز، افزونه‌ها و قالب‌های اختصاصی وردپرس، بهینه‌سازی کامل سئو (SEO)، پنل‌های مدیریت ابری شبکه و ربات‌های هوشمند تلگرام."
 };
 
 // نمونه‌کارهای پیش‌فرض شاخص
 const defaultProjects = [
   {
-    id: 'proj_1',
-    title: 'Dizyno VPN (Cloudflare Workers Edition)',
-    category: 'vpn',
-    url: 'https://github.com/MohammadMehdiArjmandManesh1386/claudeflare-dizynopanel',
-    imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80',
-    tags: ['Cloudflare Workers', 'JavaScript', 'WebSocket', 'Telegram Bot API'],
-    desc: 'پنل مدیریت کامل سرویس‌های VLESS و Trojan بر پایه کلودفلر ورکر همراه با سوکت اختصاصی، اشتراک چندگانه و ربات مدیریت تعاملی تلگرام.'
+    "id": "proj_1786760846385",
+    "title": "وبسایت اختصاصی دیزاینو",
+    "category": "web",
+    "url": "https://dizyno.ir",
+    "imageUrl": "https://dizyno.ir/wp-content/themes/dizyno/assets/images/portfolio_saas.jpg",
+    "tags": [
+      "وردپرس، کد نویسی اختصاصی، قالب و افزونه اختصاصی"
+    ],
+    "desc": "وب سایت خدماتی بنده که اونجا سفارشات طراحی سایت ثبت میشه و بررسی شده و اگر وقت و توان بود انجام می‌شه\nصفر تا صد با کدنویسی اختصاصی روی وردپرس اومده بالا و تنظیمات اختصاصی هم داره"
   },
   {
-    id: 'proj_2',
-    title: 'Dizyno VPN (Railway & Sing-box Engine)',
-    category: 'vpn',
-    url: 'https://github.com/MohammadMehdiArjmandManesh1386/railway-dizynopanel',
-    imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
-    tags: ['Node.js', 'Sing-box Core', 'Express.js', 'Bootstrap 5'],
-    desc: 'پنل سرور اختصاصی ریلوی با هسته قدرت‌مند Sing-box، دشبورد مدرن تیره، مدیریت سقف ترافیک و تاریخ انقضای کاربران.'
+    "id": "proj_1786760598801",
+    "title": "وبسایت اختصاصی فروشگاه پت و حیوانات خانگی",
+    "category": "web",
+    "url": "https://pawpetstore.ir",
+    "imageUrl": "https://pawpetstore.ir/wp-content/themes/pawpetstore-theme/assets/images/hero-banner.png",
+    "tags": [
+      "وردپرس، کد نویسی اختصاصی، قالب و افزونه اختصاصی"
+    ],
+    "desc": "صفر تا صد پروژه کامل کدنویسی شده توسط شخص بنده یک وب سایت کامل با پنل تنظیمات کامل و کاملاً قابل سفارشی سازی و ویرایش با پنل گرافیکی همچنین دارای پنل ادمین مخصوص موبایل"
   },
   {
-    id: 'proj_3',
-    title: 'افزونه اختصاصی سئو و مدیریت وردپرس',
-    category: 'wordpress',
-    url: 'https://github.com/MohammadMehdiArjmandManesh1386',
-    imageUrl: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80',
-    tags: ['WordPress Plugin', 'PHP 8+', 'SEO Optimization', 'MySQL'],
-    desc: 'توسعه افزونه اختصاصی برای وردپرس جهت آنالیز خودکار سئو، تولید متاتگ‌های هوشمند و افزایش سرعت لود صفحات.'
+    "id": "proj_1",
+    "title": "Dizyno VPN (Cloudflare Workers Edition)",
+    "category": "vpn",
+    "url": "https://github.com/MohammadMehdiArjmandManesh1386/claudeflare-dizynopanel",
+    "imageUrl": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80",
+    "tags": [
+      "Cloudflare Workers",
+      "JavaScript",
+      "WebSocket",
+      "Telegram Bot API"
+    ],
+    "desc": "پنل مدیریت کامل سرویس‌های VLESS و Trojan بر پایه کلودفلر ورکر همراه با سوکت اختصاصی، اشتراک چندگانه و ربات مدیریت تعاملی تلگرام."
   },
   {
-    id: 'proj_4',
-    title: 'اپلیکیشن کاربردی موبایل (Android App)',
-    category: 'android',
-    url: 'https://github.com/MohammadMehdiArjmandManesh1386',
-    imageUrl: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80',
-    tags: ['Android', 'Java', 'Kotlin', 'Material Design'],
-    desc: 'طراحی و کدنویسی اپلیکیشن نیتیو اندروید با رابط کاربری مدرن، مدیریت حافظه آفلاین و همگام‌سازی ابری سرور.'
-  },
-  {
-    id: 'proj_5',
-    title: 'نرم‌افزار مدیریت دسکتاپ (Windows Desktop)',
-    category: 'windows',
-    url: 'https://github.com/MohammadMehdiArjmandManesh1386',
-    imageUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80',
-    tags: ['Windows App', 'C#', '.NET', 'SQLite'],
-    desc: 'برنامه‌نویسی نرم‌افزار دسکتاپ ویندوز برای مدیریت حسابداری، گزارش‌گیری گرافیکی و خروجی اکسل.'
+    "id": "proj_2",
+    "title": "Dizyno VPN (Railway & Sing-box Engine)",
+    "category": "vpn",
+    "url": "https://github.com/MohammadMehdiArjmandManesh1386/railway-dizynopanel",
+    "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+    "tags": [
+      "Node.js",
+      "Sing-box Core",
+      "Express.js",
+      "Bootstrap 5"
+    ],
+    "desc": "پنل سرور اختصاصی ریلوی با هسته قدرت‌مند Sing-box، دشبورد مدرن تیره، مدیریت سقف ترافیک و تاریخ انقضای کاربران."
   }
 ];
-
 let currentFilter = 'all';
 
 // ---- سیستم احراز هویت ادمین ----
