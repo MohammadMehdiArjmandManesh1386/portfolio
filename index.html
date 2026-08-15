@@ -16,6 +16,23 @@
 </head>
 <body>
 
+  <!-- نوار مدیریت ادمین (در صورت ورود) -->
+  <div id="adminTopBar" class="admin-top-bar d-none">
+    <div class="container d-flex align-items-center justify-content-between py-1">
+      <div class="d-flex align-items-center gap-2 small text-warning fw-bold">
+        <i class="fa-solid fa-user-shield"></i> حالت مدیریت فعال است (محمد مهدی ارجمند منش)
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-sm btn-warning fw-bold rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#adminDashboardModal">
+          <i class="fa-solid fa-sliders me-1"></i> دشبورد مدیریت پنل
+        </button>
+        <button class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="logoutAdmin()">
+          <i class="fa-solid fa-power-off me-1"></i> خروج از مدیریت
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- نوار بالای صفحه -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top backdrop-blur">
     <div class="container">
@@ -27,13 +44,12 @@
       </a>
       
       <div class="d-flex align-items-center gap-2">
-        <button class="btn btn-outline-warning rounded-pill px-3 btn-sm" data-bs-toggle="modal" data-bs-target="#editBioModal">
-          <i class="fa-solid fa-user-gear me-1"></i> ویرایش اطلاعات و تماس
+        <!-- دکمه‌های مخصوص ادمین (در حالت عمومی مخفی) -->
+        <button id="adminAddProjBtn" class="btn btn-info text-white rounded-pill px-3 btn-sm fw-bold d-none" onclick="openAddProjectModal()">
+          <i class="fa-solid fa-plus me-1"></i> افزودن نمونه‌کار
         </button>
-        <button class="btn btn-info text-white rounded-pill px-3 btn-sm fw-bold" data-bs-toggle="modal" data-bs-target="#addProjectModal">
-          <i class="fa-solid fa-plus me-1"></i> افزودن نمونه‌کار جدید
-        </button>
-        <a href="https://github.com/Hsdhugdw" target="_blank" class="btn btn-github rounded-pill px-3 btn-sm">
+
+        <a href="https://github.com/MohammadMehdiArjmandManesh1386" target="_blank" class="btn btn-github rounded-pill px-3 btn-sm">
           <i class="fa-brands fa-github me-1"></i> گیت‌هاب
         </a>
       </div>
@@ -56,8 +72,8 @@
 
       <!-- اطلاعات تماس مستقیم -->
       <div class="d-flex flex-wrap align-items-center justify-content-center gap-3 mb-4">
-        <a id="heroEmailBtn" href="mailto:JACKLONY2010@GMAIL.COM" class="contact-pill">
-          <i class="fa-solid fa-envelope text-danger"></i> <span id="heroEmailText">JACKLONY2010@GMAIL.COM</span>
+        <a id="heroEmailBtn" href="mailto:jacklony2010@gmail.com" class="contact-pill">
+          <i class="fa-solid fa-envelope text-danger"></i> <span id="heroEmailText">jacklony2010@gmail.com</span>
         </a>
         <a id="heroPhoneBtn" href="tel:09052237518" class="contact-pill">
           <i class="fa-solid fa-phone text-success"></i> <span id="heroPhoneText">09052237518</span>
@@ -80,7 +96,7 @@
   <section class="container py-4">
     <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-3">
       <div>
-        <h3 class="fw-bold text-white mb-1"><i class="fa-solid fa-layer-group text-info me-2"></i> ویترین کامل نمونه‌کارها</h3>
+        <h3 class="fw-bold text-white mb-1"><i class="fa-solid fa-layer-group text-info me-2"></i> ویترین نمونه‌کارها</h3>
         <p class="text-slate-400 small mb-0">پروژه‌های پیاده‌سازی شده بر اساس دسته‌بندی</p>
       </div>
 
@@ -102,19 +118,154 @@
     </div>
   </section>
 
-  <!-- مودال ثبت / افزودن نمونه کار جدید -->
-  <div class="modal fade" id="addProjectModal" tabindex="-1" aria-hidden="true">
+  <!-- ==================== مودال مخفی ورود مدیریت ==================== -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content modal-dark">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title text-white fw-bold"><i class="fa-solid fa-lock text-warning me-2"></i> ورود مدیر پنل</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <form onsubmit="handleAdminLogin(event)">
+          <div class="modal-body p-4 text-center">
+            <div class="mb-3">
+              <i class="fa-solid fa-shield-halved display-4 text-warning mb-3"></i>
+              <label class="form-label text-white fw-bold d-block">رمز عبور مدیریت</label>
+              <input type="password" id="adminPasswordInput" class="form-control form-dark text-center" placeholder="کلمه عبور مدیریت..." required>
+              <span class="small text-muted d-block mt-2">رمز پیش‌فرض: <code>admin</code></span>
+            </div>
+          </div>
+          <div class="modal-footer border-secondary justify-content-center">
+            <button type="submit" class="btn btn-warning text-dark px-4 fw-bold">ورود به مدیریت</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== دشبورد کامل مدیریت (وردپرسی) ==================== -->
+  <div class="modal fade" id="adminDashboardModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content modal-dark">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title text-white fw-bold"><i class="fa-solid fa-sliders text-warning me-2"></i> پنل مدیریت نمونه‌کارها و اطلاعات (WordPress Style)</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          
+          <!-- زبانه تب‌های مدیریت -->
+          <ul class="nav nav-pills mb-4 border-bottom border-secondary pb-3 gap-2" id="adminTabs">
+            <li class="nav-item">
+              <button class="nav-link active rounded-pill fw-bold" data-bs-toggle="tab" data-bs-target="#tabProjects">
+                <i class="fa-solid fa-list-check me-1"></i> مدیریت و لیست پروژه‌ها (<span id="adminProjCount">0</span>)
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link rounded-pill fw-bold" data-bs-toggle="tab" data-bs-target="#tabBio">
+                <i class="fa-solid fa-id-card me-1"></i> ویرایش بیوگرافی و مشخصات تماس
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link rounded-pill fw-bold" data-bs-toggle="tab" data-bs-target="#tabSecurity">
+                <i class="fa-solid fa-key me-1"></i> تغییر رمز مدیریت
+              </button>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <!-- تب ۱: مدیریت پروژه‌ها (CRUD) -->
+            <div class="tab-pane fade show active" id="tabProjects">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <h6 class="fw-bold text-white mb-0">لیست تمام نمونه‌کارهای ثبت‌شده</h6>
+                <button class="btn btn-sm btn-info text-white rounded-pill px-3 fw-bold" onclick="openAddProjectModal()">
+                  <i class="fa-solid fa-plus me-1"></i> افزودن نمونه‌کار جدید
+                </button>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle">
+                  <thead>
+                    <tr>
+                      <th>تصویر</th>
+                      <th>عنوان پروژه</th>
+                      <th>دسته‌بندی</th>
+                      <th>تکنولوژی‌ها</th>
+                      <th>عملیات</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminProjectsTableBody">
+                    <!-- پر شده توسط JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- تب ۲: ویرایش اطلاعات و بیوگرافی -->
+            <div class="tab-pane fade" id="tabBio">
+              <form onsubmit="saveBioInfo(event)">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label text-white fw-bold">نام و نام خانوادگی</label>
+                    <input type="text" id="editFullName" class="form-control form-dark" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label text-white fw-bold">آدرس ایمیل</label>
+                    <input type="email" id="editEmail" class="form-control form-dark" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label text-white fw-bold">شماره تلفن</label>
+                    <input type="text" id="editPhone" class="form-control form-dark" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label text-white fw-bold">عنوان اصلی / زیرنویس هیرو</label>
+                    <input type="text" id="editSubtitle" class="form-control form-dark" required>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label text-white fw-bold">توضیحات کامل بیوگرافی</label>
+                    <textarea id="editBioText" class="form-control form-dark" rows="3" required></textarea>
+                  </div>
+                  <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-warning text-dark px-4 fw-bold">ذخیره مشخصات بیوگرافی</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- تب ۳: تغییر رمز ورود ادمین -->
+            <div class="tab-pane fade" id="tabSecurity">
+              <form onsubmit="handleChangePassword(event)" style="max-width: 500px;">
+                <div class="mb-3">
+                  <label class="form-label text-white fw-bold">رمز عبور فعلی</label>
+                  <input type="password" id="currPassInput" class="form-control form-dark" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-white fw-bold">رمز عبور جدید</label>
+                  <input type="password" id="newPassInput" class="form-control form-dark" required>
+                </div>
+                <button type="submit" class="btn btn-danger px-4 fw-bold">تغییر کلمه عبور مدیریت</button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== مودال افزودن / ویرایش یک پروژه ==================== -->
+  <div class="modal fade" id="projectEditorModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content modal-dark">
         <div class="modal-header border-secondary">
-          <h5 class="modal-title text-white fw-bold"><i class="fa-solid fa-folder-plus text-info me-2"></i> ثبت نمونه‌کار جدید</h5>
+          <h5 class="modal-title text-white fw-bold" id="editorModalTitle"><i class="fa-solid fa-folder-plus text-info me-2"></i> افزودن نمونه‌کار</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <form id="projectForm" onsubmit="saveProject(event)">
+          <input type="hidden" id="editingProjectId" value="">
           <div class="modal-body p-4">
             <div class="row g-3">
               <div class="col-md-6">
-                <label class="form-label text-white fw-bold">عنوان پروژه / نرم‌افزار / وب‌سایت</label>
+                <label class="form-label text-white fw-bold">عنوان پروژه / اپلیکیشن / وب‌سایت</label>
                 <input type="text" id="projectTitle" class="form-control form-dark" placeholder="مثال: اپلیکیشن اندروید مدیریت مالی" required>
               </div>
               <div class="col-md-6">
@@ -148,47 +299,7 @@
           </div>
           <div class="modal-footer border-secondary">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">انصراف</button>
-            <button type="submit" class="btn btn-info text-white px-4 fw-bold">ثبت نمونه‌کار در ویترین</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- مودال ویرایش بیوگرافی و اطلاعات تماس -->
-  <div class="modal fade" id="editBioModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content modal-dark">
-        <div class="modal-header border-secondary">
-          <h5 class="modal-title text-white fw-bold"><i class="fa-solid fa-user-pen text-warning me-2"></i> ویرایش بیوگرافی و اطلاعات تماس</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <form id="bioForm" onsubmit="saveBioInfo(event)">
-          <div class="modal-body p-4">
-            <div class="mb-3">
-              <label class="form-label text-white fw-bold">نام و نام خانوادگی کامل</label>
-              <input type="text" id="editFullName" class="form-control form-dark" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label text-white fw-bold">آدرس ایمیل</label>
-              <input type="email" id="editEmail" class="form-control form-dark" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label text-white fw-bold">شماره تلفن تماس</label>
-              <input type="text" id="editPhone" class="form-control form-dark" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label text-white fw-bold">عنوان شغلی / زیرنویس اصلی</label>
-              <input type="text" id="editSubtitle" class="form-control form-dark" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label text-white fw-bold">توضیحات بیوگرافی</label>
-              <textarea id="editBioText" class="form-control form-dark" rows="3" required></textarea>
-            </div>
-          </div>
-          <div class="modal-footer border-secondary">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">انصراف</button>
-            <button type="submit" class="btn btn-warning text-dark px-4 fw-bold">ذخیره اطلاعات جدید</button>
+            <button type="submit" class="btn btn-info text-white px-4 fw-bold">ذخیره و ثبت پروژه</button>
           </div>
         </form>
       </div>
